@@ -12,11 +12,11 @@ if __name__ == '__main__':
 			for repeat in range(10):
 				neuron = offline_NonLinearPerceptron(N = N, P = P, epoch = 3, l2scale = 0)
 				print(neuron.exp_id)
-				print(neuron.worked)
-				neuron.train()
 				
-				with open(neuron.exp_id + ".pickle", "wb") as file_:
-					pickle.dump(neuron, file_)
+				neuron.train()
+				print(neuron.worked)
+# 				with open(neuron.exp_id + ".pickle", "wb") as file_:
+# 					pickle.dump(neuron, file_)
 	# single trial
 	# parser = argparse.ArgumentParser()
 	# parser.add_argument('--N', type = int, default = 10)
