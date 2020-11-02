@@ -7,15 +7,15 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
 	# multiple trial
-	# for N in range(100, 1000, 100):
-	# 	for P in range(N, 3*N, 20):
-	# 		for repeat in range(10):
-	# 			neuron = offline_NonLinearPerceptron(N = N, P = P, epoch = 10, l2scale = 0)
+	 for N in range(100, 1000, 100):
+	 	for P in range(N, 3*N, 20):
+	 		for repeat in range(10):
+	 			neuron = offline_NonLinearPerceptron(N = N, P = P, epoch = 10, l2scale = 0)
 				
-	# 			neuron.train()
+	 			neuron.train()
 				
-	# 			with open(neuron.exp_id + ".pickle", "wb") as file_:
-	# 				pickle.dump(neuron1, file_)
+	 			with open(neuron.exp_id + ".pickle", "wb") as file_:
+	 				pickle.dump(neuron1, file_)
 	# single trial
 	# parser = argparse.ArgumentParser()
 	# parser.add_argument('--N', type = int, default = 10)
