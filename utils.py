@@ -36,7 +36,7 @@ class offline_NonLinearPerceptron:
 		self.pred = np.zeros(self.P, dtype = int)
 		self.pred = 2 * (self.total_I > self.T) - 1
 		self.pred = np.reshape(self.pred, np.shape(self.q))
-		self.loss.append(np.abs(pred - np.sign(self.q)).mean())
+		self.loss.append(np.abs(self.pred - np.sign(self.q)).mean())
 
 	def _update_weight(self):
 		for i in range(self.P):
