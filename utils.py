@@ -72,13 +72,14 @@ class offline_NonLinearPerceptron:
 		# solvers.options['show_progress'] = False
 		try:
 			res = solvers.lp(matrix(C_obj),matrix(A_ub), matrix(b_ub))
+			self.rhosq = np.reshape(np.array(res['x']), (self.N,self.P))
+			self.rhosq[self.rhosq < 0] = 0
+			self._update_current() 
+			self.total_I = np.zeros((self.N, self.P), dtype = float)
 		except:
 			self.worked = False
 			return
-		self.rhosq = np.reshape(np.array(res['x']), (self.N,self.P))
-		self.rhosq[self.rhosq < 0] = 0
-		self._update_current() 
-		self.total_I = np.zeros((self.N, self.P), dtype = float)
+		
 		for i in range(self.N):
 			for j in range(self.P):
 				self.total_I[i, j] += self.I[i, self.rev_ind[i, j]]
