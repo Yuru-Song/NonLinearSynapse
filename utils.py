@@ -25,6 +25,7 @@ class offline_NonLinearPerceptron:
 		self.loss = []
 		self.T = 0
 		self.worked = True
+		self.perfect = False
 		for syn in range(N):
 			ind_X[syn, :] = np.argsort(self.X[syn, :])
 		self.rev_ind = ind_X#np.argsort(ind_X)	
@@ -68,7 +69,7 @@ class offline_NonLinearPerceptron:
 		b_ub = np.sign(self.q) * self.T
 		b_ub = np.append(b_ub, np.zeros((self.N * self.P), dtype = float))
 		b_ub = b_ub.astype('float')
-		solvers.options['show_progress'] = False
+		# solvers.options['show_progress'] = False
 		try:
 			res = solvers.lp(matrix(C_obj),matrix(A_ub), matrix(b_ub))
 		except:
@@ -95,6 +96,7 @@ class offline_NonLinearPerceptron:
 
 			if self.loss[-1] < TOL and iter_epoch > 1:
 				print('well done')
+				self.perfect = True
 				break
 		if iter_epoch == self.epoch:
 			self.worked = False
@@ -183,7 +185,7 @@ class online_NonLinearPerceptron:
 		self.exp_id = 'online_N_'+ str(self.N) + '_P_' + str(self.P) + '_' + '_lr_{:.2f}'.format(self.lr)  +datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
 
 if __name__ == '__main__':
-	for N in range(100, 1000, 100):
+	for N in range(50, 1000, 100):
 		for P in range(N, 3*N, 10):
 			for repeat in range(10):
 				print([N, P, repeat])
